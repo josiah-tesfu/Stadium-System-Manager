@@ -1,5 +1,43 @@
 <?php
-// Insert Query
+
+require_once 'app.php';
+
+
+    // Update Operation
+    function handleUpdateRequest()
+    {
+        global $db_conn;
+
+        $new_name = $_POST['new-name'];
+        $new_password = $_POST['new-password'];
+        $new_email = $_POST['new-email'];
+        $new_id = $_POST['new-id'];
+
+        $old_name = $_POST['old-name'];
+        $old_password = $_POST['old-password'];
+        $old_email = $_POST['old-email'];
+        $old_id = $_POST['old-id'];
+
+        if (isset($_POST['update-name'])) {
+            executePlainSQL("UPDATE Customer SET customer_name='" . $new_name . "' WHERE customer_name='" . $old_name . "'");
+        }
+        if (isset($_POST['update-id'])) {
+            executePlainSQL("UPDATE Customer SET customer_id='" . $new_password . "' WHERE customer_id='" . $old_id . "'");
+        }
+        if (isset($_POST['update-email'])) {
+            executePlainSQL("UPDATE Customer SET customer_email='" . $new_email . "' WHERE customer_email='" . $old_email . "'");
+        }
+        if (isset($_POST['update-password'])) {
+            executePlainSQL("UPDATE Customer SET customer_password='" . $new_id . "' WHERE customer_password='" . $old_password . "'");
+        }
+
+        $result = executePlainSQL("SELECT * FROM customer s");
+        printResult($result, 4, array("CUSTOMER_NAME, EMAIL, CUSTOMER_ID, PASSWORD"), "UPDATED CUSTOMERS:");
+
+        OCICommit($db_conn);
+    }
+
+    // Insert Query
     function handleInsertNewCustomerRequest()
     {
         global $db_conn;
@@ -205,5 +243,5 @@
 
         printResult($result, 1, array("PERFORMER NAME"), "PERFORMERS THAT PERFORMED AT EVERY EVENT");
     }
-
     ?>
+
