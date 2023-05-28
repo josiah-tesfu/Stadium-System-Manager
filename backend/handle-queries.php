@@ -1,7 +1,6 @@
 <?php
 
-require_once 'app.php';
-
+include 'app.php';
 
     // Update Operation
     function handleUpdateRequest()
