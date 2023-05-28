@@ -1,0 +1,145 @@
+<html>
+
+<head>
+    <title>Stadium Management System</title>
+</head>
+
+<body>
+
+    <hr />
+
+    <h2>Insert Values into Booking System</h2>
+    <form method="POST" action="stadmium-system.php">
+        <!--INSERT Operation; implementation: handleInsertNewCustomerRequest(), line 310-->
+        <input type="hidden" id="insertQueryRequest" name="insertQueryRequest">
+        Customer name: <input type="text" name="customer-name"> <br /><br />
+        Email: <input type="text" name="email"> <br /><br />
+        Customer ID: <input type="text" name="customer-id"> <br /><br />
+        Password: <input type="text" name="password"> <br /><br />
+
+        <input type="submit" value="Insert" name="insertSubmit"></p>
+    </form>
+
+    <hr />
+
+    <h2>Update Name into Booking System</h2>
+    <p>Choose any of the following values to update. The values are case sensitive and if you enter in the wrong case, the update statement will not do anything.</p>
+
+    <form method="POST" action="stadium-system.php">
+        <!--UPDATE Operation; implementation: handleUpdateRequest(), line 276-->
+        <input type="hidden" id="updateQueryRequest" name="updateQueryRequest">
+        Customer name: <input type="checkbox" name="update-name"> <br /><br />
+        Old name: <input type="text" name="old-name"> New Name: <input type="text" name="new-name"> <br /><br />
+
+        Email: <input type="checkbox" name="update-email"> <br /><br />
+        Old email: <input type="text" name="old-email"> New email: <input type="text" name="new-email"> <br /><br />
+
+        Customer ID: <input type="checkbox" name="update-id"> <br /><br />
+        Old ID: <input type="text" name="old-id"> New customer ID: <input type="text" name="new-id"> <br /><br />
+
+        Password: <input type="checkbox" name="update-password"> <br /><br />
+        Old password: <input type="text" name="old-password"> New password: <input type="text" name="new-password"> <br /><br />
+
+        <input type="submit" value="Update" name="updateSubmit"></p>
+    </form>
+
+    <hr />
+
+
+    <h2>Delete Tuples in Booking System</h2>
+    <form method="POST" action="stadium-system.php">
+        <!--DELETE Operation; implementation: handleDeleteCustomerRequest(), line: 324-->
+        <input type="hidden" id="deleteQueryRequest" name="deleteQueryRequest">
+        Delete customer with ID: <input type="text" name="deleteId"> <br /><br />
+
+        <input type="submit" value="Delete" name="deleteSubmit"></p>
+    </form>
+
+    <hr />
+
+    <h2>Select Tuples in Booking System Based on Table, Attributes, and Conditions </h2>
+    <form method="GET" action="stadium-system.php">
+        <!--Selection Operation; implementation: handleSelectBookingInfoRequest(), line: 343-->
+        <input type="hidden" id="selectQueryRequest" name="selectQueryRequest">
+        CUSTOMER<input type="radio" name="table-selection" id="select-customer" value="customer"> <br /><br />
+        EVENT<input type="radio" name="table-selection" id="select-event" value="event"> <br /><br />
+        VENUE<input type="radio" name="table-selection" id="select-venue" value="venue"> <br /><br />
+
+        Customer options: #1: name, #2: password <br /><br />
+        Venue options: #1: name, #2: address <br /><br />
+        Event options: #1: name, #2: date <br /><br />
+
+        Option #1 <input type="checkbox" name="option-1">
+        <input type="text" name="condition-1"> <br /><br />
+        Option #2 <input type="checkbox" name="option-2">
+        <input type="text" name="condition-2"> <br /><br />
+
+        <input type="submit" value="Select" name="selectSubmit"></p>
+    </form>
+
+
+    <h2>Display Projection of Seats</h2>
+    <p>Based on at least one of seat section, row, and availability
+    <p>
+    <form method="GET" action="stadium-system.php"></form>
+    <!--Projection Operation; implementation: handleProjectionOfSeatsRequest(), line 402-->
+    <input type="checkbox" name="seat-type" value="section">Seat_Section
+    <input type="checkbox" name="seat-type" value="row">Seat_Row
+    <input type="checkbox" name="seat-type" value="availability">Seat_Availability
+
+    <input type="hidden" id="projectSeatsQueryRequest" name="projectSeatsQueryRequest">
+    <input type="submit" value="Show Seats" name="projectSubmit"></p>
+    </form>
+
+    <hr />
+
+    <h2>Find Event Name and Date Given a Venue</h2>
+    <form method="GET" action="stadium-system.php">
+        <!--Join Operation; implementation: handleEventGivenVenueRequest(), line 443-->
+        <input type="hidden" id="joinEventQueryRequest" name="joinEventQueryRequest">
+        Venue Name: <input type="text" name="venueName"> <br /><br />
+
+        <input type="submit" value="Find Events" name="joinEventTuples">
+    </form>
+
+    <hr />
+
+    <h2>Find the number of Seat Rows in Each Section</h2>
+    <!--Aggregation with Group By Operation; implementation: handleRowsBySectionRequest(), line 455-->
+    <form method="GET" action="stadium-system.php">
+        <input type="hidden" id="aggGroupByRequest" name="groupByRequest">
+        <input type="submit" name="groupByButton">
+    </form>
+
+    <hr />
+
+    <h2>Find all Seat Sections that Have at least 5 Available Seats</h2>
+    <p>Lower row numbers are closer to the stage. A row less than 4 is considered 'good'</p>
+    <!--Aggregation with Having Operation; implementation: handleRowsWithAvailabilityRequest(), line 467-->
+    <form method="GET" action="stadium-system.php">
+        <input type="hidden" id="aggHavingRequest" name="aggHavingRequest">
+        <input type="submit" name="havingButton">
+    </form>
+
+    <hr />
+
+    <h2>Find the Total Number of Tickets Sold over $200 Within Each Age Group</h2>
+    <!--Nested Aggregation with Group By Operation; implementation: handleExpensiveTicketsByAgeRequest(), line 482-->
+    <form method="GET" action="stadium-system.php">
+        <input type="hidden" id="nestedAggRequest" name="nestedAggRequest">
+        <input type="submit" name="nestedAggButton">
+    </form>
+
+    <hr />
+
+    <h2>Find the Performers that have Performed at Every Event</h2>
+    <!--Division Operation; implementation: handlePerformersAtEveryEventRequest(), line 499-->
+    <form method="GET" action="stadium-system.php">
+        <input type="hidden" id="divisionRequest" name="divisionAggRequest">
+        <input type="submit" name="divisionButton">
+    </form>
+
+    <hr />
+
+</body>
+</html>
